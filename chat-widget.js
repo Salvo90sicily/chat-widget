@@ -76,7 +76,7 @@
       <div id="chat-input-container" class="p-4 border-t border-gray-200">
         <div class="flex space-x-4 items-center">
           <input type="text" id="chat-input" class="flex-1 border border-gray-300 rounded-md px-4 py-2 outline-none w-3/4" placeholder="Type your message...">
-          <button id="chat-submit" class="bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer">Send</button>
+          <button id="chat-submit" class="bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer">.</button>
         </div>
         <div class="flex text-center text-xs pt-4">
           <span class="flex-1">Powered by Hair Fiber Plus</span>
