@@ -25,8 +25,8 @@
     z-index: 1000000000000000000000;
   }
   #chat-popup {
-    height: 70vh;
-    max-height: 70vh;
+    height: 10vh;
+    max-height: 10vh;
     transition: all 0.3s;
     overflow: hidden;
     z-index: 999999999999999; 
