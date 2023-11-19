@@ -79,7 +79,7 @@
           <button id="chat-submit" class="bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer">Send</button>
         </div>
         <div class="flex text-center text-xs pt-4">
-          <span class="flex-1">Powered by HomeVision</span>
+          <span class="flex-1">Powered by Hair Fiber Plus</span>
         </div>
       </div>
     </div>
