@@ -108,7 +108,7 @@
     padding: 0.5rem 1rem; /* equivalent to px-4 py-2 in Tailwind CSS */
     outline: none; /* equivalent to outline-none in Tailwind CSS */
     width: 60% !important; /* equivalent to w-3/4 in Tailwind CSS */
-    max-width:15rem;
+    max-width:14rem !important;
   }
   #chat-submit{
     background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
