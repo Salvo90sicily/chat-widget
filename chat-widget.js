@@ -1,12 +1,27 @@
 (function () {
-  document.head.insertAdjacentHTML(
-    "beforeend",
-    '<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css" rel="stylesheet">'
-  );
+  // document.head.insertAdjacentHTML(
+  //   "beforeend",
+  //   '<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css" rel="stylesheet">'
+  // );
 
   // Inject the CSS
   const style = document.createElement("style");
   style.innerHTML = `
+  #chat-bubble{
+    width: 4rem; /* equivalent to w-16 in Tailwind CSS */
+    height: 4rem; /* equivalent to h-16 in Tailwind CSS */
+    background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
+    border-radius: 50%; /* equivalent to rounded-full in Tailwind CSS */
+    display: flex; /* equivalent to flex in Tailwind CSS */
+    align-items: center; /* equivalent to items-center in Tailwind CSS */
+    justify-content: center; /* equivalent to justify-center in Tailwind CSS */
+    cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
+    font-size: 1.875rem; /* equivalent to text-3xl in Tailwind CSS */
+    color: #fff; /* Set text color */
+  }
+  #chat-bubble:hover{
+    background-color: #1a1a1a;
+  }
   pre {
     white-space: pre-wrap;       /* Since CSS 2.1 */
     white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
@@ -15,7 +30,7 @@
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
   .hidden {
-    display: none;
+    display: none !important;
   }
   #chat-widget-container {
     position: fixed;
@@ -25,12 +40,36 @@
     z-index: 1000000000000000000000;
   }
   #chat-popup {
+    position: absolute;
+    bottom: 5rem; /* equivalent to bottom-20 in Tailwind CSS */
+    right: 0;
+    width: 24rem; /* equivalent to w-96 in Tailwind CSS */
+    background-color: #fff; /* equivalent to bg-white in Tailwind CSS */
+    border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* equivalent to shadow-md in Tailwind CSS */
+    display: flex; /* equivalent to flex in Tailwind CSS */
+    flex-direction: column; /* equivalent to flex-col in Tailwind CSS */
+    transition: all 0.3s ease; /* equivalent to transition-all in Tailwind CSS */
+    font-size: 0.875rem; /* equivalent to text-sm in Tailwind CSS */
     height: 70vh;
     max-height: 70vh;
     transition: all 0.3s;
     overflow: hidden;
     z-index: 999999999999999; 
   }
+  #chat-popup:hover{
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+#chat-header{
+  display: flex; /* equivalent to flex in Tailwind CSS */
+    justify-content: space-between; /* equivalent to justify-between in Tailwind CSS */
+    align-items: center; /* equivalent to items-center in Tailwind CSS */
+    padding: 1rem; /* equivalent to p-4 in Tailwind CSS */
+    background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
+    color: #fff; /* equivalent to text-white in Tailwind CSS */
+    border-top-left-radius: 0.375rem; /* equivalent to rounded-t-md in Tailwind CSS */
+    border-top-right-radius: 0.375rem;
+}
   #chat-input:disabled {
     cursor: not-allowed;
   }
@@ -47,6 +86,52 @@
       border-radius: 0;
     }
   }
+  #chat-messages{
+    flex: 1; /* equivalent to flex-1 in Tailwind CSS */
+    padding: 1rem; /* equivalent to p-4 in Tailwind CSS */
+    overflow-y: auto;
+  }
+
+  #chat-input-container{
+    padding: 1rem; /* equivalent to p-4 in Tailwind CSS */
+    border-top: 1px solid #e2e8f0; /
+  }
+  .custom1{
+    display: flex; /* equivalent to flex in Tailwind CSS */
+    gap: 1rem; /* equivalent to space-x-4 in Tailwind CSS */
+    align-items: center; /* equivalent to items-center in Tailwind CSS */
+  }
+  #chat-input{
+    flex: 1; /* equivalent to flex-1 in Tailwind CSS */
+    border: 1px solid #e2e8f0; /* equivalent to border border-gray-300 in Tailwind CSS */
+    border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
+    padding: 0.5rem 1rem; /* equivalent to px-4 py-2 in Tailwind CSS */
+    outline: none; /* equivalent to outline-none in Tailwind CSS */
+    width: 60% !important; /* equivalent to w-3/4 in Tailwind CSS */
+    max-width:15rem;
+  }
+  #chat-submit{
+    background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
+    color: #fff; /* equivalent to text-white in Tailwind CSS */
+    border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
+    padding: 0.5rem 1rem; /* equivalent to px-4 py-2 in Tailwind CSS */
+    cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
+  }
+  .custom-icon1{
+    width: 2.5rem; /* equivalent to w-10 in Tailwind CSS */
+    height: 2.5rem; /* equivalent to h-10 in Tailwind CSS */
+    color: #fff; /* equivalent to text-white in Tailwind CSS */
+  }
+  .custom-icon2{
+    height: 1.5rem; /* equivalent to h-6 in Tailwind CSS */
+    width: 1.5rem; /* equivalent to w-6 in Tailwind CSS */
+  }
+  #close-popup{
+    background-color: transparent; /* equivalent to bg-transparent in Tailwind CSS */
+    border: none; /* equivalent to border-none in Tailwind CSS */
+    color: #fff; /* equivalent to text-white in Tailwind CSS */
+    cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
+  }
   `;
 
   document.head.appendChild(style);
@@ -58,23 +143,23 @@
 
   // Inject the HTML
   chatWidgetContainer.innerHTML = `
-    <div id="chat-bubble" class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center cursor-pointer text-3xl">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+    <div id="chat-bubble" class="">
+      <svg xmlns="http://www.w3.org/2000/svg" class="custom-icon1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
       </svg>
     </div>
-    <div id="chat-popup" class="hidden absolute bottom-20 right-0 w-96 bg-white rounded-md shadow-md flex flex-col transition-all text-sm">
-      <div id="chat-header" class="flex justify-between items-center p-4 bg-gray-800 text-white rounded-t-md">
+    <div id="chat-popup" class="hidden">
+      <div id="chat-header" class="">
         <h5 class="m-0 text-white">AI powered Chatbot</h5>
-        <button id="close-popup" class="bg-transparent border-none text-white cursor-pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <button id="close-popup" class="">
+          <svg xmlns="http://www.w3.org/2000/svg" class="custom-icon2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
       <div id="chat-messages" class="flex-1 p-4 overflow-y-auto"></div>
       <div id="chat-input-container" class="p-4 border-t border-gray-200">
-        <div class="flex space-x-4 items-center">
+        <div class="custom1">
           <input type="text" id="chat-input" class="flex-1 border border-gray-300 rounded-md px-4 py-2 outline-none w-3/4" placeholder="Type your message...">
           <button id="chat-submit" class="bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer">.</button>
         </div>
@@ -175,7 +260,10 @@
     const result = await response.json();
     console.log(result);
 
-    const cleanedMessage = result.response.replace(/\&#8203;``【oaicite:2】``&#8203;]*\】|\[[^\]]*\]/g, '');
+    const cleanedMessage = result.response.replace(
+      /\&#8203;``【oaicite:2】``&#8203;]*\】|\[[^\]]*\]/g,
+      ""
+    );
     console.log(cleanedMessage);
     if (result) {
       // Reply to the user
