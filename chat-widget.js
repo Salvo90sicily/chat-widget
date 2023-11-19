@@ -85,6 +85,14 @@
       max-height: 100%;
       border-radius: 0;
     }
+    #chat-input{
+      max-width:14rem !important;
+    }
+    .custom1{
+      display: flex; /* equivalent to flex in Tailwind CSS */
+      gap: 0rem; /* equivalent to space-x-4 in Tailwind CSS */
+      align-items: center; /* equivalent to items-center in Tailwind CSS */
+    }
   }
   #chat-messages{
     flex: 1; /* equivalent to flex-1 in Tailwind CSS */
@@ -107,8 +115,8 @@
     border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
     padding: 0.5rem 1rem; /* equivalent to px-4 py-2 in Tailwind CSS */
     outline: none; /* equivalent to outline-none in Tailwind CSS */
-    width: 60% !important; /* equivalent to w-3/4 in Tailwind CSS */
-    max-width:14rem !important;
+    width: 70% !important; /* equivalent to w-3/4 in Tailwind CSS */
+  
   }
   #chat-submit{
     background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
@@ -131,6 +139,20 @@
     border: none; /* equivalent to border-none in Tailwind CSS */
     color: #fff; /* equivalent to text-white in Tailwind CSS */
     cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
+  }
+  .user-message{
+    background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
+    color: #fff; /* equivalent to text-white in Tailwind CSS */
+    border-radius: 0.5rem; /* equivalent to rounded-lg in Tailwind CSS */
+    padding: 0.5rem 1rem; /* equivalent to py-2 px-4 in Tailwind CSS */
+    max-width: 70%; /* equivalent to max-w-[70%] in Tailwind CSS */
+  }
+  .chatbot-message{
+    background-color: #e2e8f0; /* equivalent to bg-gray-200 in Tailwind CSS */
+    color: #000; /* equivalent to text-black in Tailwind CSS */
+    border-radius: 0.5rem; /* equivalent to rounded-lg in Tailwind CSS */
+    padding: 0.5rem 1rem; /* equivalent to py-2 px-4 in Tailwind CSS */
+    max-width: 70%; /* equivalent to max-w-[70%] in Tailwind CSS */
   }
   `;
 
@@ -223,7 +245,7 @@
     const messageElement = document.createElement("div");
     messageElement.className = "flex justify-end mb-3";
     messageElement.innerHTML = `
-      <div class="bg-gray-800 text-white rounded-lg py-2 px-4 max-w-[70%]">
+      <div class="user-message">
         ${message}
       </div>
     `;
@@ -281,7 +303,7 @@
     replyElement.className = "flex mb-3";
     replyElement.innerHTML = `
  
-      <div class="bg-gray-200 text-black rounded-lg py-2 px-4 max-w-[70%]">
+      <div class="chatbot-message">
       <pre>${message}      </pre>
       </div>
 
