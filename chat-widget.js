@@ -10,7 +10,7 @@
   #chat-bubble{
     width: 4rem; /* equivalent to w-16 in Tailwind CSS */
     height: 4rem; /* equivalent to h-16 in Tailwind CSS */
-    background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
+    background-color: #f5f800; /* equivalent to bg-gray-800 in Tailwind CSS */
     border-radius: 50%; /* equivalent to rounded-full in Tailwind CSS */
     display: flex; /* equivalent to flex in Tailwind CSS */
     align-items: center; /* equivalent to items-center in Tailwind CSS */
@@ -65,7 +65,7 @@
     justify-content: space-between; /* equivalent to justify-between in Tailwind CSS */
     align-items: center; /* equivalent to items-center in Tailwind CSS */
     padding: 1rem; /* equivalent to p-4 in Tailwind CSS */
-    background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
+    background-color: #f5f800; /* equivalent to bg-gray-800 in Tailwind CSS */
     color: #fff; /* equivalent to text-white in Tailwind CSS */
     border-top-left-radius: 0.375rem; /* equivalent to rounded-t-md in Tailwind CSS */
     border-top-right-radius: 0.375rem;
@@ -122,7 +122,7 @@
     background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
     color: #fff; /* equivalent to text-white in Tailwind CSS */
     border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
-    padding: 0rem 0.2rem; /* equivalent to px-4 py-2 in Tailwind CSS */
+    padding: 0.2rem 0.5rem; /* equivalent to px-4 py-2 in Tailwind CSS */
     cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
   }
   .custom-icon1{
@@ -181,7 +181,6 @@
     </div>
     <div id="chat-popup" class="hidden">
       <div id="chat-header" class="">
-        <h5 class="m-0 text-white">AI powered Chatbot</h5>
         <button id="close-popup" class="">
           <svg xmlns="http://www.w3.org/2000/svg" class="custom-icon2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
