@@ -122,7 +122,7 @@
     background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
     color: #fff; /* equivalent to text-white in Tailwind CSS */
     border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
-    padding: 0.5rem 1rem; /* equivalent to px-4 py-2 in Tailwind CSS */
+    padding: 0rem 0.2rem; /* equivalent to px-4 py-2 in Tailwind CSS */
     cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
   }
   .custom-icon1{
@@ -139,6 +139,15 @@
     border: none; /* equivalent to border-none in Tailwind CSS */
     color: #fff; /* equivalent to text-white in Tailwind CSS */
     cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
+  }
+  .chatbot-message-parent{
+    display:flex;
+    margin-bottom:0.5rem;
+  }
+  .user-message-parent{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:0.5rem;
   }
   .user-message{
     background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
@@ -183,10 +192,14 @@
       <div id="chat-input-container" class="p-4 border-t border-gray-200">
         <div class="custom1">
           <input type="text" id="chat-input" class="flex-1 border border-gray-300 rounded-md px-4 py-2 outline-none w-3/4" placeholder="Type your message...">
-          <button id="chat-submit" class="bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer">.</button>
-        </div>
-        <div class="flex text-center text-xs pt-4">
-          <span class="flex-1">Powered by Hair Fiber Plus</span>
+          <button id="chat-submit">
+          <svg xmlns="http://www.w3.org/2000/svg" class="custom-icon2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+      
+      
+
+      </button>
         </div>
       </div>
     </div>
@@ -199,6 +212,11 @@
   const chatBubble = document.getElementById("chat-bubble");
   const chatPopup = document.getElementById("chat-popup");
   const closePopup = document.getElementById("close-popup");
+
+   // Initialize chat with a default message
+   chatPopup.classList.remove("hidden");
+   chatInput.focus();
+   reply("Ciao, come posso aiutarti oggi?");
 
   chatSubmit.addEventListener("click", function () {
     const message = chatInput.value.trim();
@@ -243,7 +261,7 @@
 
     // Display user message
     const messageElement = document.createElement("div");
-    messageElement.className = "flex justify-end mb-3";
+    messageElement.className = "user-message-parent";
     messageElement.innerHTML = `
       <div class="user-message">
         ${message}
@@ -300,9 +318,8 @@
   function reply(message) {
     const chatMessages = document.getElementById("chat-messages");
     const replyElement = document.createElement("div");
-    replyElement.className = "flex mb-3";
+    replyElement.className = "chatbot-message-parent";
     replyElement.innerHTML = `
- 
       <div class="chatbot-message">
       <pre>${message}      </pre>
       </div>
