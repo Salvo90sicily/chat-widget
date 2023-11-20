@@ -20,7 +20,7 @@
     color: #fff; /* Set text color */
   }
   #chat-bubble:hover{
-    background-color: #1a1a1a;
+    background-color: #f5f80080;
   }
   pre {
     white-space: pre-wrap;       /* Since CSS 2.1 */
@@ -62,9 +62,9 @@
 }
 #chat-header{
   display: flex; /* equivalent to flex in Tailwind CSS */
-    justify-content: space-between; /* equivalent to justify-between in Tailwind CSS */
+    justify-content: flex-end; /* equivalent to justify-between in Tailwind CSS */
     align-items: center; /* equivalent to items-center in Tailwind CSS */
-    padding: 1rem; /* equivalent to p-4 in Tailwind CSS */
+    padding: 0.5rem; /* equivalent to p-4 in Tailwind CSS */
     background-color: #f5f800; /* equivalent to bg-gray-800 in Tailwind CSS */
     color: #fff; /* equivalent to text-white in Tailwind CSS */
     border-top-left-radius: 0.375rem; /* equivalent to rounded-t-md in Tailwind CSS */
@@ -113,17 +113,18 @@
     flex: 1; /* equivalent to flex-1 in Tailwind CSS */
     border: 1px solid #e2e8f0; /* equivalent to border border-gray-300 in Tailwind CSS */
     border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
-    padding: 0.5rem 1rem; /* equivalent to px-4 py-2 in Tailwind CSS */
+    padding: 0.8rem; /* equivalent to px-4 py-2 in Tailwind CSS */
     outline: none; /* equivalent to outline-none in Tailwind CSS */
-    width: 70% !important; /* equivalent to w-3/4 in Tailwind CSS */
+    width: 75% !important; /* equivalent to w-3/4 in Tailwind CSS */
   
   }
   #chat-submit{
-    background-color: #2d2d2d; /* equivalent to bg-gray-800 in Tailwind CSS */
+    background-color: #f5f800; /* equivalent to bg-gray-800 in Tailwind CSS */
     color: #fff; /* equivalent to text-white in Tailwind CSS */
     border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
-    padding: 0.2rem 0.5rem; /* equivalent to px-4 py-2 in Tailwind CSS */
+    padding: 0.3rem 0.6rem; /* equivalent to px-4 py-2 in Tailwind CSS */
     cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
+    border:none !important;
   }
   .custom-icon1{
     width: 2.5rem; /* equivalent to w-10 in Tailwind CSS */
@@ -212,10 +213,10 @@
   const chatPopup = document.getElementById("chat-popup");
   const closePopup = document.getElementById("close-popup");
 
-   // Initialize chat with a default message
-   chatPopup.classList.remove("hidden");
-   chatInput.focus();
-   reply("Ciao, come posso aiutarti oggi?");
+  // Initialize chat with a default message
+  chatPopup.classList.remove("hidden");
+  chatInput.focus();
+  reply("Ciao, come posso aiutarti oggi?");
 
   chatSubmit.addEventListener("click", function () {
     const message = chatInput.value.trim();
