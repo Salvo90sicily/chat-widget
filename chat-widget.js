@@ -214,7 +214,6 @@
   const closePopup = document.getElementById("close-popup");
 
   // Initialize chat with a default message
-  chatPopup.classList.remove("hidden");
   chatInput.focus();
   reply("Ciao, come posso aiutarti oggi?");
 
