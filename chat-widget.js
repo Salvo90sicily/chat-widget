@@ -113,9 +113,7 @@
     border: none; /* equivalent to border border-gray-300 in Tailwind CSS */
     border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
     padding: 0.8rem; /* equivalent to px-4 py-2 in Tailwind CSS */
-    outline: none; /* equivalent to outline-none in Tailwind CSS */
-    width: 75% !important; /* equivalent to w-3/4 in Tailwind CSS */
-  
+    outline: none; /* equivalent to outline-none in Tailwind CSS */  
   }
   #chat-submit{
     background-color: #f5f800; /* equivalent to bg-gray-800 in Tailwind CSS */
