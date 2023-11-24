@@ -176,7 +176,9 @@
 .floating-dots {
     animation: floatAnimation 1s infinite;
 }
-
+input{
+  outline:none !important
+}
   `;
 
   document.head.appendChild(style);
