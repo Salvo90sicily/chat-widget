@@ -86,7 +86,7 @@
       border-radius: 0;
     }
     #chat-input{
-      max-width:14rem !important;
+      max-width:16rem !important;
     }
     .custom1{
       display: flex; /* equivalent to flex in Tailwind CSS */
@@ -164,6 +164,19 @@
     padding: 0.5rem 1rem; /* equivalent to py-2 px-4 in Tailwind CSS */
     max-width: 70%; /* equivalent to max-w-[70%] in Tailwind CSS */
   }
+  @keyframes floatAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.floating-dots {
+    animation: floatAnimation 1s infinite;
+}
+
   `;
 
   document.head.appendChild(style);
@@ -259,60 +272,61 @@
     console.log("User request:", message);
 
     // Display user message
-    const messageElement = document.createElement("div");
-    messageElement.className = "user-message-parent";
-    messageElement.innerHTML = `
-      <div class="user-message">
-        ${message}
-      </div>
+    const userMessageElement = document.createElement("div");
+    userMessageElement.className = "user-message-parent";
+    userMessageElement.innerHTML = `
+        <div class="user-message">
+            ${message}
+        </div>
     `;
-    chatMessages.appendChild(messageElement);
+    chatMessages.appendChild(userMessageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Display floating animation for three dots
+    const dotsContainer = document.createElement("div");
+    dotsContainer.className = "chatbot-message-parent";
+    dotsContainer.innerHTML = `
+        <div class="chatbot-message">
+            <pre class="floating-dots">...</pre>
+        </div>
+    `;
+    chatMessages.appendChild(dotsContainer);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     chatInput.value = "";
 
     const response = await fetch(
-      "https://web-production-a38e1.up.railway.app/https://api-production-8f68.up.railway.app/chat",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          message: message,
-        }),
-        // body: JSON.stringify({
-        //   messages: [
-        //     {
-        //       role: "assistant",
-        //       content: "Hello, How can I help you?",
-        //     },
-        //     {
-        //       role: "user",
-        //       content: message,
-        //     },
-        //   ],
-        //   userName: "not specified",
-        // }),
-      }
+        "https://web-production-a38e1.up.railway.app/https://api-production-8f68.up.railway.app/chat",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                message: message,
+            }),
+        }
     );
+
+    chatMessages.removeChild(dotsContainer);
+
     const result = await response.json();
     console.log(result);
 
     const cleanedMessage = result.response.replace(
-      /\&#8203;``【oaicite:2】``&#8203;]*\】|\[[^\]]*\]/g,
-      ""
+        /\&#8203;``&#8203;``【oaicite:0】``&#8203;``&#8203;]*\】|\[[^\]]*\]/g,
+        ""
     );
     console.log(cleanedMessage);
-    if (result) {
-      // Reply to the user
-      setTimeout(function () {
+
+    // Reply to the user
+    setTimeout(function () {
         reply(cleanedMessage);
-      }, 1000);
-      chatInput.disabled = false;
-      chatSubmit.disabled = false;
-    }
-  }
+    }, 100);
+
+    chatInput.disabled = false;
+    chatSubmit.disabled = false;
+}
 
   function reply(message) {
     const chatMessages = document.getElementById("chat-messages");
