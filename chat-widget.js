@@ -86,7 +86,7 @@
       border-radius: 0;
     }
     #chat-input{
-      max-width:16rem !important;
+      max-width:20rem !important;
     }
     .custom1{
       display: flex; /* equivalent to flex in Tailwind CSS */
