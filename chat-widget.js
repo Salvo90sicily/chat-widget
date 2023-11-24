@@ -85,13 +85,12 @@
       max-height: 100%;
       border-radius: 0;
     }
-    #chat-input{
-      max-width:20rem !important;
-    }
     .custom1{
       display: flex; /* equivalent to flex in Tailwind CSS */
       gap: 0rem; /* equivalent to space-x-4 in Tailwind CSS */
       align-items: center; /* equivalent to items-center in Tailwind CSS */
+      border: 1px solid #e2e8f0
+      padding:0.5rem;
     }
   }
   #chat-messages{
@@ -111,7 +110,7 @@
   }
   #chat-input{
     flex: 1; /* equivalent to flex-1 in Tailwind CSS */
-    border: 1px solid #e2e8f0; /* equivalent to border border-gray-300 in Tailwind CSS */
+    border: none; /* equivalent to border border-gray-300 in Tailwind CSS */
     border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
     padding: 0.8rem; /* equivalent to px-4 py-2 in Tailwind CSS */
     outline: none; /* equivalent to outline-none in Tailwind CSS */
@@ -125,6 +124,9 @@
     padding: 0.3rem 0.6rem; /* equivalent to px-4 py-2 in Tailwind CSS */
     cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
     border:none !important;
+    border-radius:50%;
+    width:42px;
+    height:42px;
   }
   .custom-icon1{
     width: 2.5rem; /* equivalent to w-10 in Tailwind CSS */
@@ -132,8 +134,8 @@
     color: #fff; /* equivalent to text-white in Tailwind CSS */
   }
   .custom-icon2{
-    height: 1.5rem; /* equivalent to h-6 in Tailwind CSS */
-    width: 1.5rem; /* equivalent to w-6 in Tailwind CSS */
+    height: 1.2rem; /* equivalent to h-6 in Tailwind CSS */
+    width: 1.2rem; /* equivalent to w-6 in Tailwind CSS */
   }
   #close-popup{
     background-color: transparent; /* equivalent to bg-transparent in Tailwind CSS */
@@ -232,6 +234,18 @@ input{
   chatInput.focus();
   reply("Ciao, come posso aiutarti oggi?");
 
+  chatSubmit.style.display = "none";
+
+  chatInput.addEventListener("input", function () {
+    // Show the send button when the user writes a message
+    if (chatInput.value.trim() !== "") {
+      chatSubmit.style.display = "block";
+    } else {
+      // Hide the send button if the user deletes the message
+      chatSubmit.style.display = "none";
+    }
+  });
+
   chatSubmit.addEventListener("click", function () {
     const message = chatInput.value.trim();
     if (!message) return;
@@ -298,16 +312,16 @@ input{
     chatInput.value = "";
 
     const response = await fetch(
-        "https://web-production-a38e1.up.railway.app/https://api-production-8f68.up.railway.app/chat",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                message: message,
-            }),
-        }
+      "https://web-production-a38e1.up.railway.app/https://api-production-8f68.up.railway.app/chat",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: message,
+        }),
+      }
     );
 
     chatMessages.removeChild(dotsContainer);
@@ -316,19 +330,19 @@ input{
     console.log(result);
 
     const cleanedMessage = result.response.replace(
-        /\&#8203;``&#8203;``【oaicite:0】``&#8203;``&#8203;]*\】|\[[^\]]*\]/g,
-        ""
+      /\&#8203;``&#8203;``【oaicite:0】``&#8203;``&#8203;]*\】|\[[^\]]*\]/g,
+      ""
     );
     console.log(cleanedMessage);
 
     // Reply to the user
     setTimeout(function () {
-        reply(cleanedMessage);
+      reply(cleanedMessage);
     }, 100);
 
     chatInput.disabled = false;
     chatSubmit.disabled = false;
-}
+  }
 
   function reply(message) {
     const chatMessages = document.getElementById("chat-messages");
