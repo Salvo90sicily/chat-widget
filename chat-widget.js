@@ -104,9 +104,11 @@
     border-top: 1px solid #e2e8f0; /
   }
   .custom1{
+    border:1px solid #e2e8f0;
     display: flex; /* equivalent to flex in Tailwind CSS */
     gap: 1rem; /* equivalent to space-x-4 in Tailwind CSS */
     align-items: center; /* equivalent to items-center in Tailwind CSS */
+    padding:0rem 0.5rem 0rem 0rem;
   }
   #chat-input{
     flex: 1; /* equivalent to flex-1 in Tailwind CSS */
@@ -119,12 +121,12 @@
     background-color: #f5f800; /* equivalent to bg-gray-800 in Tailwind CSS */
     color: #fff; /* equivalent to text-white in Tailwind CSS */
     border-radius: 0.375rem; /* equivalent to rounded-md in Tailwind CSS */
-    padding: 0.3rem 0.6rem; /* equivalent to px-4 py-2 in Tailwind CSS */
+    padding: 0.2rem 0.4rem; /* equivalent to px-4 py-2 in Tailwind CSS */
     cursor: pointer; /* equivalent to cursor-pointer in Tailwind CSS */
     border:none !important;
     border-radius:50%;
-    width:42px;
-    height:42px;
+    width:32px;
+    height:32px;
   }
   .custom-icon1{
     width: 2.5rem; /* equivalent to w-10 in Tailwind CSS */
